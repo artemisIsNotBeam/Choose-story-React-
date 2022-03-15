@@ -3,14 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 // import all function/ calsses
-import App from './App';
-import Buttan from './App2';
+import Buttan from './storychooser';
 
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
     <Buttan />
   </React.StrictMode>,
   document.getElementById('root')
