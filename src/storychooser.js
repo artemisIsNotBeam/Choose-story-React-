@@ -32,63 +32,17 @@ let CurIndex = 1;
 let newIndex = 0;  
 
 class Buttan extends React.Component {
+  
   constructor(props){
     super(props);
-    //this.upDate = this.upDate.bind(this);
+    this.upDate = this.upDate.bind(this);
+    this.restart = this.restart.bind(this);
   }
-  /*
-  upDate(num){
-    console.log("----")
-    console.log("function got runned selectedNum was "+ num);
-    let newIndex = this.state.story[this.state.CurIndex][num];
-    //alert(newIndex);
-    console.log("new Index is "+ newIndex);
-    this.setState({
-      CurIndex: newIndex
-    });
-
-    console.log("new value is "+this.state.CurIndex)
-  }
-  */
   
-  render() {
-    return (
-      <div>
-          <h1>Welcome to my choose your own adventure using react</h1>
-          <p id="prompt">{example[CurIndex]["prompt"]}</p>
-          <button id="button1" onClick={() =>{upDate(1,CurIndex)} }> {example[CurIndex]["option1"]}</button>
-          <button id="button2" onClick={() =>{upDate(2,CurIndex)} }> {example[CurIndex]["option2"]}</button>
-          <button id="third" onClick={()=>{restart()}}>Restart</button>
-      </div>
-    )
-  }
-}
+  restart(){
+    newIndex=1;
+    CurIndex = 1;
 
-function restart(){
-  newIndex=1;
-  CurIndex = 1;
-
-  const prompt = document.getElementById("prompt");
-  const button1 = document.getElementById("button1");
-  const button2 = document.getElementById("button2");
-  //update
-  prompt.innerHTML = example[newIndex]["prompt"];
-  button1.innerHTML = example[newIndex]["option1"];
-  button2.innerHTML = example[newIndex]["option2"];
-}
-
-function upDate(num, Index){
-  console.log("----")
-  console.log("function got runned selectedNum was "+ num);
-  console.log("function gor  unned index as "+Index);
-  newIndex = example[Index][num];
-  //find the new Index or where our new messages will be.
-  if(example[Index][1] ==="done"){
-    alert("you're done yay!!!")
-  } else{
-    CurIndex = newIndex;
-    console.log("new Index is "+ CurIndex);
-    //defining our things to update
     const prompt = document.getElementById("prompt");
     const button1 = document.getElementById("button1");
     const button2 = document.getElementById("button2");
@@ -97,7 +51,41 @@ function upDate(num, Index){
     button1.innerHTML = example[newIndex]["option1"];
     button2.innerHTML = example[newIndex]["option2"];
   }
+
+  upDate(num,Index){
+    console.log("----")
+    console.log("function got runned selectedNum was "+ num);
+    console.log("function gor  unned index as "+Index);
+    newIndex = example[Index][num];
+    //find the new Index or where our new messages will be.
+    if(example[Index][1] ==="done"){
+      alert("you're done yay!!!")
+    } else{
+      CurIndex = newIndex;
+      console.log("new Index is "+ CurIndex);
+      //defining our things to update
+      const prompt = document.getElementById("prompt");
+      const button1 = document.getElementById("button1");
+      const button2 = document.getElementById("button2");
+      //update
+      prompt.innerHTML = example[newIndex]["prompt"];
+      button1.innerHTML = example[newIndex]["option1"];
+      button2.innerHTML = example[newIndex]["option2"];
+  }
+  }
   
+  
+  render() {
+    return (
+      <div>
+          <h1>Welcome to my choose your own adventure using react</h1>
+          <p id="prompt">{example[CurIndex]["prompt"]}</p>
+          <button id="button1" onClick={() =>{this.upDate(1,CurIndex)} }> {example[CurIndex]["option1"]}</button>
+          <button id="button2" onClick={() =>{this.upDate(2,CurIndex)} }> {example[CurIndex]["option2"]}</button>
+          <button id="third" onClick={()=>{this.restart()}}>Restart</button>
+      </div>
+    )
+  }
 }
 
 export default Buttan;
